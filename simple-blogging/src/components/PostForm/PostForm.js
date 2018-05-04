@@ -107,7 +107,7 @@ class PostForm extends Component {
   }
 
   checkFormValidity() {
-    const formData = {...this.state.postForm};
+    const formData = { ...this.state.postForm };
 
     let formIsValid = true;
     for (const inputIdentifiers in formData) {
@@ -163,6 +163,9 @@ class PostForm extends Component {
     );
     updatedFormElement.touched = true;
 
+    if (updatedFormElement.elementType === "radio") {
+      updatedFormElement.elementConfig.checked = updatedFormElement.value;
+    }
     formData[inputId] = updatedFormElement;
 
     let formIsValid = true;
