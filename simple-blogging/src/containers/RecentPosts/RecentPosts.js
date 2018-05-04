@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from "react";
 
-import RecentPost from "../../components/RecentPost/RecentPost";
-import ButtonFilters from "../../components/RecentPost/ButtonFilters/ButtonFilters";
+import PostDetails from "../../components/PostDetails/PostDetails";
+import ButtonFilters from "../../components/RecentPosts/ButtonFilters/ButtonFilters";
 import Spinner from "../../components/UI/Spinner/Spinner";
 import axios from "../../axios";
 
@@ -12,6 +12,14 @@ class RecentPosts extends Component {
     loading: true,
     filter: "all"
   };
+
+  get allPosts() {
+    return this._allPosts;
+  }
+
+  set allPosts(value) {
+    this._allPosts = value;
+  }
 
   async componentDidMount() {
     try {
@@ -30,16 +38,19 @@ class RecentPosts extends Component {
         }
       }
       posts.reverse();
-      this.setState({ loading: false, posts, allPosts: posts });
+
+      this.allPosts = posts;
+
+      this.setState({ loading: false, posts: [...posts] });
     } catch (e) {}
   }
 
   filterPosts = filter => {
     let posts;
     if (filter === "all") {
-      posts = this.state.allPosts.map(p => p);
+      posts = this.allPosts.map(p => p);
     } else {
-      posts = this.state.allPosts.filter(p => p.status === filter);
+      posts = this.allPosts.filter(p => p.status === filter);
     }
 
     this.setState({ posts, filter });
@@ -54,7 +65,7 @@ class RecentPosts extends Component {
       <Fragment>
         <ButtonFilters filter={this.state.filter} filterPosts={this.filterPosts} />
         <hr />
-        {this.state.posts.map(p => <RecentPost key={p.id} post={p} />)}
+        {this.state.posts.map(p => <PostDetails key={p.id} post={p} />)}
       </Fragment>
     );
   }

@@ -5,8 +5,9 @@ import "./NavigationItems.css";
 
 const navigationItems = props => (
   <ul className="NavigationItems">
-    <NavigationItem link="/posts/create">Create Post</NavigationItem>
+    <NavigationItem link="/posts">All Posts</NavigationItem>
     <NavigationItem link="/posts/recent">Recent Posts</NavigationItem>
+    <NavigationItem link="/posts/create">Create Post</NavigationItem>
   </ul>
 );
 

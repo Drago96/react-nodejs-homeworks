@@ -2,13 +2,13 @@ import React from "react";
 import PropTypes from "prop-types";
 import ReactMarkdown from "react-markdown";
 
-import "./RecentPost.css";
+import "./PostDetails.css";
 
-const recentPost = props => {
+const postDetails = props => {
   const tags = props.post.tags.join(", ");
 
   return (
-    <div className="RecentPost">
+    <div className="PostDetails">
       <h1> {props.post.title} </h1>
       <ReactMarkdown source={props.post.text.substring(0, 150)} />
       <hr />
@@ -20,8 +20,8 @@ const recentPost = props => {
   );
 };
 
-recentPost.propTypes = {
+postDetails.propTypes = {
   post: PropTypes.object.isRequired
 };
 
-export default recentPost;
+export default postDetails;

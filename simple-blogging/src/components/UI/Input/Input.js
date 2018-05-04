@@ -35,7 +35,15 @@ const input = props => {
     case "radio":
       inputElement = props.elementConfig.options.map(o => (
         <div className="Radio" key={o.value}>
-          <input className="Radio" name={props.elementConfig.name} onChange={props.changed} id={o.value} value={o.value} type="radio" />
+          <input
+            className="Radio"
+            checked={props.elementConfig.checked === o.value}
+            name={props.elementConfig.name}
+            onChange={props.changed}
+            id={o.value}
+            value={o.value}
+            type="radio"
+          />
           <label htmlFor={o.value}>{o.displayValue}</label>
         </div>
       ));
