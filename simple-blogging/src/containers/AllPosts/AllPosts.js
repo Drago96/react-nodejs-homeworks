@@ -42,8 +42,6 @@ class AllPosts extends Component {
 
   deletePost = async postId => {
     try {
-      console.log(postId);
-      console.log(this.state.posts);
       const posts = this.state.posts.filter(p => p.id !== postId);
       this.setState({ posts });
 
