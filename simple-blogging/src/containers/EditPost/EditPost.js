@@ -21,6 +21,9 @@ class EditPost extends Component {
 
     try {
       const { data } = await axios.get(`/posts/${postId}.json`);
+      if (!data) {
+        this.props.history.push("/posts");
+      }
       this.setState({ post: data, loading: false });
     } catch (e) {
       this.props.history.push("/posts");
