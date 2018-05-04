@@ -7,7 +7,9 @@ import "./PostDetails.css";
 const postDetails = props => {
   const tags = props.post.tags.join(", ");
 
-  const postImage = props.post.imageUrl ? <img alt="Post" src={props.post.imageUrl} height="200px" /> : null;
+  const postImage = props.post.imageUrl ? (
+    <img alt="Post" src={props.post.imageUrl} height="200px" />
+  ) : null;
 
   return (
     <div className="PostDetails">
@@ -19,6 +21,7 @@ const postDetails = props => {
       <p>
         Created by {props.post.author} on {props.post.createdAt.toGMTString()}
       </p>
+      <p>Status: {props.post.status}</p>
     </div>
   );
 };
